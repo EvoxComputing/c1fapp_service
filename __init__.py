@@ -95,7 +95,7 @@ class C1fappService(Service):
 
         payload = json.dumps(params)
 
-        cif_response = s.post(queryUrl, timeout=10, data=payload)
+        cif_response = s.post(queryUrl, timeout=20, data=payload)
         try:
             assert cif_response.status_code == 200
             self._info("API Response status code: %s"
