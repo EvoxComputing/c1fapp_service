@@ -83,7 +83,7 @@ class C1fappService(Service):
 
         elif obj._meta['crits_type'] == 'IP':
             sources.append(obj.ip)
-            params = {'backend': 'db', 'format': 'json',
+            params = {'backend': 'es', 'format': 'json',
                         'key': apikey, 'request': obj.ip}
             self._info("Looking address: %s" % obj.ip)
         else:
