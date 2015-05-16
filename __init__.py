@@ -129,32 +129,42 @@ class C1fappService(Service):
                 _source = ""
                 _ip_entry = ""
 
-                for assessment_entry in entry['assessment']:
-                    _assessment = " "+assessment_entry
-                for source_entry in entry['source']:
-                    _source = " "+source_entry
-                for _ip_entry in entry['ip_address']:
-                    _ip_address = " "+_ip_entry
+               
+                _assessment = []
+                _source = []
 
-                stats = \
-                    {
+                try:
+                    for assessment_entry in entry['assessment']:
+                        _assessment = " "+assessment_entry
+                    for source_entry in entry['source']:
+                        _source = " "+source_entry
+                    for _ip_entry in entry['ip_address']:
+                        _ip_address = " "+_ip_entry
 
-                        'domain': entry['domain'][0],
-                        'description': entry['description'][0],
-                        'source': _source,
-                        'label': entry['feed_label'][0],
-                        'assessment': _assessment,
-                        'type': entry['derived'],
-                        'ip_address': _ip_entry,
-                        'country': entry['country'][0],
-                        'ASN': entry['asn'][0],
-                        'ASN_Desc': entry['asn_desc'][0],
 
-                        'confidence': entry['confidence'][0],
-                        'last_seen': entry['reportime'][0]
 
-                    }
-                self._add_result('Enrichment Data', entry['address'][0], stats)
+                    stats = \
+                        {
+
+                            'domain': entry['domain'][0],
+                            'description': entry['description'][0],
+                            'source': _source,
+                            'label': entry['feed_label'][0],
+                            'assessment': _assessment,
+                            'type': entry['derived'],
+                            'ip_address': _ip_entry,
+                            'country': entry['country'][0],
+                            'ASN': entry['asn'][0],
+                            'ASN_Desc': entry['asn_desc'][0],
+
+                            'confidence': entry['confidence'][0],
+                            'last_seen': entry['reportime'][0]
+
+                        }
+                    self._add_result('Enrichment Data', entry['address'][0], stats)
+                except Exception,e:
+                    pass
+
 
         except Exception, e:
             print e
